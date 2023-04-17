@@ -41,9 +41,9 @@ class ApplicationController extends Controller
      * @param Application $application
      * @return ApplicationResource
      */
-    public function app_done(Application $application): ApplicationResource
+    public function change_state(Application $application): ApplicationResource
     {
-        $app = $this->applicationService->app_done($application);
+        $app = $this->applicationService->change_state($application);
         return ApplicationResource::make($app);
     }
 }

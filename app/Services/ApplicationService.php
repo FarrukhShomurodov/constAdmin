@@ -31,7 +31,7 @@ class ApplicationService
      * @param Application $application
      * @return Application|null
      */
-    public function app_done(Application $application): ?Application
+    public function change_state(Application $application): ?Application
     {
         $application->update([
             "state" => 1

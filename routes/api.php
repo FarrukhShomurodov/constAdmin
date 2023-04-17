@@ -19,8 +19,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::prefix('application')->name('application')->group(function () {
+Route::prefix('application')->name('.application')->group(function () {
     Route::get('',[ApplicationController::class, 'index'])->name('index');
     Route::post('',[ApplicationController::class, 'store'])->name('store');
-    Route::put('{application}',[ApplicationController::class, 'app_done'])->name('app_done');
+    Route::put('{application}',[ApplicationController::class, 'change_state'])->name('change_state');
 });

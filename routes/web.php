@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\ApplicationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::prefix('admin')->name('admin.')->group(function(){
+    Route::get('/',[ApplicationController::class, "index"])->name('index');
+    Route::put('{application}',[ApplicationController::class, "change_state"])->name('change_state');
+    Route::get('show_done_app',[ApplicationController::class, "show_done_app"])->name('show_done_app');
 });
