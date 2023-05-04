@@ -24,7 +24,7 @@ class ApplicationController extends Controller
      */
     public function index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $app = $this->applicationService->index();
+        $app = \App\Models\Application::query()->get();
         return view('admin.app.applications', ['applications' => $app]);
     }
 
@@ -35,7 +35,7 @@ class ApplicationController extends Controller
     public function change_state(\App\Models\Application $application): Application|Redirector|RedirectResponse|\Illuminate\Contracts\Foundation\Application
     {
         $app = $this->applicationService->change_state($application);
-        return redirect()->route('admin.done_app', ['applications' => $app]);
+        return redirect()->route('admin.show_done_app', ['applications' => $app]);
     }
 
     /**
@@ -43,8 +43,8 @@ class ApplicationController extends Controller
      */
     public function show_done_app(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $app = $this->applicationService->index();
-        return view('admin.app.done_applications', ['applications' => $app]);
+        $done_app = $this->applicationService->show_done_app();
+        return view('admin.app.done_applications', ['applications' => $done_app]);
     }
 
 }

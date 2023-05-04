@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
 @section('content-header')
-    Сделаные Заявки
+    Done Application
 @endsection
 
 @section('breadcrumb-items')
-    <li class="breadcrumb-item active">Сделаные Заявки</li>
+    <li class="breadcrumb-item active">Done Application</li>
 @endsection
 
 @section('content')
@@ -23,7 +23,6 @@
                 </thead>
                 <tbody>
                 @foreach($applications as $application)
-                    @if($application->state == 1)
                         <tr>
                             <td>{{$application->id}}</td>
                             <td>{{$application->name}}</td>
@@ -31,7 +30,6 @@
                             <td>{{$application->email}}</td>
                             <td>{{$application->message}}</td>
                         </tr>
-                    @endif
                 @endforeach
                 </tbody>
             </table>

@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
 @section('content-header')
-    Заявки
+    Application
 @endsection
 
 @section('breadcrumb-items')
-    <li class="breadcrumb-item active">Заявки</li>
+    <li class="breadcrumb-item active">Application</li>
 @endsection
 
 @section('content')
@@ -19,7 +19,7 @@
                     <th>Number</th>
                     <th>Email</th>
                     <th>Message</th>
-                    <th>State</th>
+                    <th>Status</th>
                 </trc>
                 </thead>
                 <tbody>
