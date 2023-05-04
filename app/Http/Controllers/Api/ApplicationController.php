@@ -7,7 +7,8 @@ use App\Http\Requests\ApplicationRequest;
 use App\Http\Resources\ApplicationResource;
 use App\Models\Application;
 use App\Services\ApplicationService;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Contracts\Routing\ResponseFactory;
+use Illuminate\Http\Response;
 
 class ApplicationController extends Controller
 {
@@ -19,12 +20,12 @@ class ApplicationController extends Controller
     }
 
     /**
-     * @return AnonymousResourceCollection
+     * @return \Illuminate\Contracts\Foundation\Application|ResponseFactory|\Illuminate\Foundation\Application|Response
      */
-    public function index(): AnonymousResourceCollection
+    public function index(): \Illuminate\Contracts\Foundation\Application|ResponseFactory|\Illuminate\Foundation\Application|Response
     {
         $app = $this->applicationService->index();
-        return ApplicationResource::collection($app);
+        return response($app);
     }
 
     /**
@@ -39,11 +40,11 @@ class ApplicationController extends Controller
 
     /**
      * @param Application $application
-     * @return ApplicationResource
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Foundation\Application|Response|ResponseFactory
      */
-    public function change_state(Application $application): ApplicationResource
+    public function changeState(Application $application): \Illuminate\Contracts\Foundation\Application|ResponseFactory|\Illuminate\Foundation\Application|Response
     {
-        $app = $this->applicationService->change_state($application);
-        return ApplicationResource::make($app);
+        $this->applicationService->changeState($application);
+        return response(200);
     }
 }

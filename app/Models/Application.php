@@ -13,6 +13,6 @@ class Application extends Model
       'phone_number',
       'email',
       'message',
-        'state'
+       'state'
     ];
 }

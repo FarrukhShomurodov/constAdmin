@@ -18,7 +18,7 @@ class ApplicationService
      */
     public function index(): Collection|array
     {
-        return Application::query()->get();
+        return Application::query()->get()->all();
     }
 
     /**
@@ -35,7 +35,7 @@ class ApplicationService
      * @param Application $application
      * @return Application|null
      */
-    public function change_state(Application $application): ?Application
+    public function changeState(Application $application): ?Application
     {
         $application->update([
             "state" => 1
@@ -44,22 +44,14 @@ class ApplicationService
             'title' => 'Mail from const.group.uz@gmail.com',
             'body' => 'This is for testing email using smtp.'
         ];
-        $twilio = new Twilio(getenv("TWILIO_SID"), getenv("TWILIO_TOKEN"), getenv("TWILIO_FROM"));
-        try {
-            $twilio->message("+998995759559", "Hello, I writing this message from Const Company");
-        }catch (TwilioException $e) {
-            dd("Message".$e->getMessage());
-        }
-        Mail::to($application->email)->send(new ApplicationMail($mailData));
+//        $twilio = new Twilio(getenv("TWILIO_SID"), getenv("TWILIO_TOKEN"), getenv("TWILIO_FROM"));
+//        try {
+//            $twilio->message("+99890868171", "Hello, I writing this message from Const Company");
+//        }catch (TwilioException $e) {
+//            dd("Message".$e->getMessage());
+//        }
+        Mail::to('uamerike@gmail.com')->send(new ApplicationMail($mailData));
 
         return $application->fresh();
-    }
-
-    /**
-     * @return Collection|array
-     */
-    public function show_done_app(): Collection|array
-    {
-        return Application::query()->where('state',"=",1)->get();
     }
 }

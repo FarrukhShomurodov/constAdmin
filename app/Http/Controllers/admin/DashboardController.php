@@ -7,22 +7,16 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 
-class ApplicationController extends Controller
+class DashboardController extends Controller
 {
     /**
      * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
      */
     public function index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('admin.app.applications');
+        $app = \App\Models\Application::query();
+        $count = $app->count();
+        $doneAppCount = $app->where("state", "=",1)->count();
+        return view('admin.dashboard',["application" => $count, "doneApp" => $doneAppCount]);
     }
-
-    /**
-     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
-     */
-    public function doneApp(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
-    {
-        return view('admin.app.done_applications');
-    }
-
 }

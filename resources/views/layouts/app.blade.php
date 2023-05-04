@@ -13,12 +13,13 @@
     <link rel="stylesheet" href="{{asset("plugins/summernote/summernote-bs4.min.css")}}">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper">
+<div class="wrapper" style="overflow-y: auto; height: 100vh">
 
     @yield('main-content')
 
     <!-- jQuery -->
     <script src="{{asset("plugins/jquery/jquery.min.js")}}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="{{asset("plugins/jquery-ui/jquery-ui.min.js")}}"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
