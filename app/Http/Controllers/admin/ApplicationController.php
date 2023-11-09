@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Application;
 use App\Services\ApplicationService;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Routing\Redirector;
 
 class ApplicationController extends Controller
 {
@@ -20,31 +19,31 @@ class ApplicationController extends Controller
     }
 
     /**
-     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+     * @return View|\Illuminate\Foundation\Application|Factory|\Illuminate\Contracts\Foundation\Application
      */
-    public function index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    public function index(): View|\Illuminate\Foundation\Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $app = \App\Models\Application::query()->get();
-        return view('admin.app.applications', ['applications' => $app]);
+        $applications = Application::all();
+        return view('admin.app.applications', compact('applications'));
     }
 
     /**
-     * @param \App\Models\Application $application
-     * @return Application|Redirector|RedirectResponse|\Illuminate\Contracts\Foundation\Application
+     * @param Application $application
+     * @return RedirectResponse
      */
-    public function change_state(\App\Models\Application $application): Application|Redirector|RedirectResponse|\Illuminate\Contracts\Foundation\Application
+    public function change_state(Application $application): RedirectResponse
     {
-        $app = $this->applicationService->change_state($application);
-        return redirect()->route('admin.show_done_app', ['applications' => $app]);
+        $applications = $this->applicationService->change_state($application);
+        return redirect()->route('admin.show_done_app', compact('applications'));
     }
 
     /**
-     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+     * @return View|\Illuminate\Foundation\Application|Factory|\Illuminate\Contracts\Foundation\Application
      */
-    public function show_done_app(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    public function show_done_app(): View|\Illuminate\Foundation\Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $done_app = $this->applicationService->show_done_app();
-        return view('admin.app.done_applications', ['applications' => $done_app]);
+        $applications = $this->applicationService->show_done_app();
+        return view('admin.app.done_applications', compact('applications'));
     }
 
 }

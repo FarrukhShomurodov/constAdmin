@@ -19,15 +19,6 @@ class ApplicationController extends Controller
     }
 
     /**
-     * @return AnonymousResourceCollection
-     */
-    public function index(): AnonymousResourceCollection
-    {
-        $app = $this->applicationService->index();
-        return ApplicationResource::collection($app);
-    }
-
-    /**
      * @param ApplicationRequest $request
      * @return ApplicationResource
      */
@@ -35,15 +26,5 @@ class ApplicationController extends Controller
     {
         $this->applicationService->store($request->validated());
         return ApplicationResource::make($request);
-    }
-
-    /**
-     * @param Application $application
-     * @return ApplicationResource
-     */
-    public function change_state(Application $application): ApplicationResource
-    {
-        $app = $this->applicationService->change_state($application);
-        return ApplicationResource::make($app);
     }
 }

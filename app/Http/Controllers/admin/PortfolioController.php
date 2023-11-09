@@ -20,8 +20,8 @@ class PortfolioController extends Controller
      */
     public function index(): View|\Illuminate\Foundation\Application|Factory|Application
     {
-        $portfolios = Portfolio::query()->get();
-        return view('admin.portfolio.index', ['portfolios' => $portfolios]);
+        $portfolios = Portfolio::all();
+        return view('admin.portfolio.index', compact('portfolios'));
     }
 
     /**
@@ -46,7 +46,7 @@ class PortfolioController extends Controller
                 "image" => $imagePath
             ]);
         }
-        return redirect()->route('admin.portfolio.index')->with('status', 'Image Has been uploaded');
+        return redirect()->route('admin.portfolio.index');
     }
 
     /**
@@ -55,7 +55,7 @@ class PortfolioController extends Controller
      */
     public function edit(Portfolio $portfolio): View|Application|Factory
     {
-        return view('admin.portfolio.update', ['portfolio' => $portfolio]);
+        return view('admin.portfolio.update', compact('portfolio'));
     }
 
     /**
