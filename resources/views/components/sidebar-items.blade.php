@@ -22,3 +22,11 @@
         </p>
     </a>
 </li>
+<li class="nav-item">
+    <a href="{{route('admin.services.index')}}" class="nav-link">
+        <i class="fa-solid fa-image-portrait"></i>
+        <p>
+            Services
+        </p>
+    </a>
+</li>
