@@ -27,8 +27,6 @@
             </section>
             <!-- /.content -->
         </div>
-        <!-- /.content-wrapper -->
-        @include('components.footer')
 
     </div>
 @endsection

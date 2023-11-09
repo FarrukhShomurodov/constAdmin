@@ -24,7 +24,7 @@
 </li>
 <li class="nav-item">
     <a href="{{route('admin.services.index')}}" class="nav-link">
-        <i class="fa-solid fa-image-portrait"></i>
+        <i class="fa-solid fa-computer"></i>
         <p>
             Services
         </p>

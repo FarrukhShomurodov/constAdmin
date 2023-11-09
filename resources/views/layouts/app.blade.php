@@ -6,8 +6,8 @@
     <title>ConstAdmin</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link rel="stylesheet" href="{{ asset("plugins/fontawesome-free-6.4.0-web/css/all.css") }}">
-    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+{{--    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>--}}
+{{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />--}}
     <link rel="stylesheet" href="{{asset("dist/css/adminlte.min.css")}}">
     <link rel="stylesheet" href="{{asset("plugins/overlayScrollbars/css/OverlayScrollbars.min.css")}}">
     <link rel="stylesheet" href="{{asset("plugins/summernote/summernote-bs4.min.css")}}">
@@ -34,7 +34,7 @@
     <script src="{{asset("plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js")}}"></script>
     <!-- AdminLTE App -->
     <script src="{{asset("dist/js/adminlte.js")}}"></script>
-    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+{{--    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>--}}
 @yield('script')
 </body>
 </html>
