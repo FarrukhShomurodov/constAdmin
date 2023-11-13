@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\ApplicationController;
+use App\Http\Controllers\admin\NewsController;
 use App\Http\Controllers\admin\PortfolioController;
 use App\Http\Controllers\admin\ServicesController;
 use App\Http\Controllers\Auth\LoginController;
@@ -28,6 +29,14 @@ Route::middleware('auth')->group(function () {
             Route::get('{service}/edit', [ServicesController::class, 'edit'])->name('edit');
             Route::put('{service}', [ServicesController::class, 'update'])->name('update');
             Route::delete('{service}/destroy', [ServicesController::class, 'destroy'])->name('destroy');
+        });
+        Route::prefix('news')->name('news.')->group(function () {
+            Route::get('', [NewsController::class, 'index'])->name('index');
+            Route::get('/create', [NewsController::class, 'create'])->name('create');
+            Route::post('', [NewsController::class, 'store'])->name('store');
+            Route::get('{news}/edit', [NewsController::class, 'edit'])->name('edit');
+            Route::put('{news}', [NewsController::class, 'update'])->name('update');
+            Route::delete('{news}/destroy', [NewsController::class, 'destroy'])->name('destroy');
         });
     });
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
