@@ -30,3 +30,11 @@
         </p>
     </a>
 </li>
+<li class="nav-item">
+    <a href="{{route('admin.news.index')}}" class="nav-link">
+        <i class="fa-solid fa-newspaper"></i>
+        <p>
+            News
+        </p>
+    </a>
+</li>
