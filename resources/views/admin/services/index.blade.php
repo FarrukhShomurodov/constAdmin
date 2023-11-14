@@ -30,6 +30,7 @@
                         <tr>
                             <td>{{$service->id}}</td>
                             <td>{{$service->title}}</td>
+                            <td>{{$service->description}}</td>
                             <td> <img src="{{\Illuminate\Support\Facades\Storage::url($service->image)}}" width="300px"> </td>
                             <td>
                                 <div class="col-2 p-0">

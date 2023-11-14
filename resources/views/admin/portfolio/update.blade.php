@@ -28,7 +28,7 @@
                     <label for="image">File input</label>
                     <div class="input-group">
                         <div class="custom-file">
-                            <input name="image" type="file" class="custom-file-input @error('image') is-invalid @enderror" id="image">
+                            <input name="images[]" type="file" class="custom-file-input @error('image') is-invalid @enderror" id="image" multiple>
                             <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                         </div>
                         @error('image')

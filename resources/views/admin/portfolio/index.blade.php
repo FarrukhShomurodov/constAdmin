@@ -26,28 +26,32 @@
                 </thead>
                 <tbody>
                 @foreach($portfolios as $portfolio)
-                        <tr>
-                            <td>{{$portfolio->id}}</td>
-                            <td>{{$portfolio->title}}</td>
-                            <td> <img src="{{\Illuminate\Support\Facades\Storage::url($portfolio->image)}}" width="300px"> </td>
-                            <td>
-                                <div class="col-2 p-0">
-                                    <a class="btn" href="{{route('admin.portfolio.edit',$portfolio->id)}}">
-                                        <i class="fa fa-sharp fa-solid fa-pen" style="color: #00b44e"></i>
-                                    </a>
-                                </div>
-                            </td>
-                            <td>
-                                <form action="{{route('admin.portfolio.destroy',$portfolio->id)}}"
-                                      method="post">
-                                    @csrf
-                                    @method('delete')
-                                    <button class="btn" type="submit"><i
-                                            class="fa fa-sharp fa-solid fa-trash" style="color: red"></i>
-                                    </button>
-                                </form>
-                            </td>
-                        <tr>
+                    <tr>
+                        <td>{{$portfolio->id}}</td>
+                        <td>{{$portfolio->title}}</td>
+                        <td>
+                            @foreach(json_decode($portfolio->images) as $image)
+                                <img src="{{\Illuminate\Support\Facades\Storage::url($image)}}" width="300px">
+                            @endforeach
+                        </td>
+                        <td>
+                            <div class="col-2 p-0">
+                                <a class="btn" href="{{route('admin.portfolio.edit',$portfolio->id)}}">
+                                    <i class="fa fa-sharp fa-solid fa-pen" style="color: #00b44e"></i>
+                                </a>
+                            </div>
+                        </td>
+                        <td>
+                            <form action="{{route('admin.portfolio.destroy',$portfolio->id)}}"
+                                  method="post">
+                                @csrf
+                                @method('delete')
+                                <button class="btn" type="submit"><i
+                                        class="fa fa-sharp fa-solid fa-trash" style="color: red"></i>
+                                </button>
+                            </form>
+                        </td>
+                    <tr>
                 @endforeach
                 </tbody>
             </table>

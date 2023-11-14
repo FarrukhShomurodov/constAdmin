@@ -39,11 +39,16 @@ class PortfolioController extends Controller
     public function store(PortfolioRequest $request): RedirectResponse
     {
         $validated = $request->validated();
-        if($validated){
-            $imagePath = $request->file('image')->store('images', 'public');
+        if ($validated) {
+            $imagesPath = [];
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('images', 'public');
+                $imagesPath[] = $path;
+            }
+            $imagesPathInJson = json_encode($imagesPath);
             Portfolio::query()->create([
                 "title" => $validated['title'],
-                "image" => $imagePath
+                "images" => $imagesPathInJson
             ]);
         }
         return redirect()->route('admin.portfolio.index');
@@ -66,15 +71,21 @@ class PortfolioController extends Controller
     public function update(Portfolio $portfolio, PortfolioRequest $request): RedirectResponse
     {
         $validated = $request->validated();
-        $imagePath = '';
-        if($validated){
-            if(Storage::disk('public')->exists($portfolio->image)){
-                Storage::disk('public')->delete($portfolio->image);
-                $imagePath = $request->file('image')->store('images', 'public');
+        if ($validated) {
+            $imagesPath = [];
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('images', 'public');
+                $imagesPath[] = $path;
             }
+            foreach (json_decode($portfolio->images) as $image) {
+                if (Storage::disk('public')->exists($image)) {
+                    Storage::disk('public')->delete($image);
+                }
+            }
+            $imagesPathInJson = json_encode($imagesPath);
             $portfolio->update([
                 "title" => $validated['title'],
-                "image" => $imagePath
+                "images" => $imagesPathInJson
             ]);
         }
         return redirect()->route('admin.portfolio.index');
@@ -86,7 +97,7 @@ class PortfolioController extends Controller
      */
     public function destroy(Portfolio $portfolio): RedirectResponse
     {
-        if(Storage::disk('public')->exists($portfolio->image)){
+        if (Storage::disk('public')->exists($portfolio->image)) {
             Storage::disk('public')->delete($portfolio->image);
         }
         $portfolio->delete();
